@@ -1,0 +1,14 @@
+name: "brev-ly-server-d1-ftr"
+
+services:
+  database:
+    container_name: "database-d1-ftr"
+    image: bitnami/postgresql:latest
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=brevLyServer
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=brevLyServerDB
+    volumes:
+      - "./docker:/docker-entrypoint-initdb.d"

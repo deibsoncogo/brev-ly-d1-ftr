@@ -37,8 +37,6 @@ export const createShortLinkRoute: FastifyPluginAsyncZod = async server => {
       switch (error.constructor.name) {
         case "AlreadyExistsError":
           return reply.status(409).send({ message: error.message })
-        default:
-          return reply.status(500).send({ message: error.message })
       }
     }
   )

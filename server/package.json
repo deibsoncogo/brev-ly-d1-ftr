@@ -15,11 +15,7 @@
     "type": "git",
     "url": "https://github.com/deibsoncogo/brev-ly-d1-ftr"
   },
-  "keywords": [
-    "rocketseat",
-    "pós-graduação",
-    "desafio 1"
-  ],
+  "keywords": ["rocketseat", "pós-graduação", "desafio 1"],
   "scripts": {
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
@@ -39,7 +35,6 @@
   },
   "dependencies": {
     "@fastify/cors": "^11.0.1",
-    "@fastify/multipart": "^9.0.3",
     "@fastify/swagger": "^9.5.1",
     "@fastify/swagger-ui": "^5.2.3",
     "drizzle-orm": "^0.44.2",

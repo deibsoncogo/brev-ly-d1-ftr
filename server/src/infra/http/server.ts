@@ -8,6 +8,7 @@ import {
   serializerCompiler,
   validatorCompiler,
 } from "fastify-type-provider-zod"
+import { createShortLinkRoute } from "./routes/create-short-link"
 import { transformSwaggerSchema } from "./transform-swagger-schema"
 
 const server = fastify()
@@ -46,7 +47,7 @@ server.register(fastifySwaggerUi, {
   routePrefix: "/docs",
 })
 
-// server.register(Route)
+server.register(createShortLinkRoute)
 
 server.listen({ port: 3333, host: "0.0.0.0" }).then(() => {
   console.log("HTTP server running!")

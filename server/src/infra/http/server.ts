@@ -36,8 +36,18 @@ server.register(fastifyMultipart)
 server.register(fastifySwagger, {
   openapi: {
     info: {
-      title: "Upload Widget Server",
+      title: "Brev Ly",
       version: "1.0.0",
+      description: "A simple URL shortener service",
+      summary: "Brev Ly API Documentation",
+      contact: {
+        name: "Deibson Cogo",
+        email: "deibsoncogo@outlook.com",
+      },
+      license: {
+        name: "MIT",
+        url: "https://opensource.org/license/mit/",
+      },
     },
   },
   transform: transformSwaggerSchema,

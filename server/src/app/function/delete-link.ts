@@ -3,7 +3,7 @@ import { z } from "zod"
 import { db } from "../../infra/db"
 import { schema } from "../../infra/db/schemas"
 import { type Either, makeLeft, makeRight } from "../../infra/shared/either"
-import { NotFoundLinkError } from "./errors/not-found-link-error"
+import { NotFoundLinkError } from "./errors"
 
 const deleteLinkInput = z.object({
   id: z.string().uuid(),

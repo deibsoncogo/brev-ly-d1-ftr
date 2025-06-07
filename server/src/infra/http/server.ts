@@ -3,8 +3,7 @@ import { fastifySwagger } from "@fastify/swagger"
 import scalarUI from "@scalar/fastify-api-reference"
 import { fastify } from "fastify"
 import * as fastifyTypeProviderZod from "fastify-type-provider-zod"
-import { createShortLinkRoute } from "./routes/create-short-link"
-import { deleteLinkRoute } from "./routes/delete-link"
+import * as routes from "./routes"
 
 const server = fastify()
 
@@ -51,8 +50,8 @@ server.register(scalarUI, {
   configuration: { layout: "modern" },
 })
 
-server.register(createShortLinkRoute)
-server.register(deleteLinkRoute)
+server.register(routes.createShortLinkRoute)
+server.register(routes.deleteLinkRoute)
 
 server.listen({ port: 3333, host: "0.0.0.0" }).then(() => {
   console.log("HTTP server running!")

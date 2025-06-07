@@ -3,7 +3,7 @@ import { db } from "../../infra/db"
 import { schema } from "../../infra/db/schemas"
 import type { links } from "../../infra/db/schemas/links"
 import { type Either, makeLeft, makeRight } from "../../infra/shared/either"
-import { AlreadyExistsError } from "./errors/already-exists-error"
+import { AlreadyExistsError } from "./errors"
 
 const createShortLinkInput = z.object({
   originalLink: z.string().url(),

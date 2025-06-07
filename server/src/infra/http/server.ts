@@ -2,21 +2,16 @@ import { fastifyCors } from "@fastify/cors"
 import { fastifySwagger } from "@fastify/swagger"
 import scalarUI from "@scalar/fastify-api-reference"
 import { fastify } from "fastify"
-import {
-  hasZodFastifySchemaValidationErrors,
-  jsonSchemaTransform,
-  serializerCompiler,
-  validatorCompiler,
-} from "fastify-type-provider-zod"
+import * as fastifyTypeProviderZod from "fastify-type-provider-zod"
 import { createShortLinkRoute } from "./routes/create-short-link"
 
 const server = fastify()
 
-server.setValidatorCompiler(validatorCompiler)
-server.setSerializerCompiler(serializerCompiler)
+server.setValidatorCompiler(fastifyTypeProviderZod.validatorCompiler)
+server.setSerializerCompiler(fastifyTypeProviderZod.serializerCompiler)
 
 server.setErrorHandler((error, request, reply) => {
-  if (hasZodFastifySchemaValidationErrors(error)) {
+  if (fastifyTypeProviderZod.hasZodFastifySchemaValidationErrors(error)) {
     return reply.status(422).send({
       message: "Data validation failed",
       issues: error.validation,
@@ -45,7 +40,7 @@ server.register(fastifySwagger, {
       },
     },
   },
-  transform: jsonSchemaTransform,
+  transform: fastifyTypeProviderZod.jsonSchemaTransform,
 })
 
 server.register(scalarUI, {

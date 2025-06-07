@@ -3,6 +3,7 @@
     "bitnami",
     "brev",
     "cloudflare",
-    "initdb"
+    "initdb",
+    "uuidv7"
   ]
 }

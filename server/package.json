@@ -23,7 +23,6 @@
   "scripts": {
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:migrate:test": "dotenv -e .env.test -- drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
     "dev": "tsx --env-file .env src/infra/http/server.ts",
     "dev:watch": "tsx watch --env-file .env src/infra/http/server.ts",
@@ -32,6 +31,7 @@
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@types/node": "^22.15.29",
+    "@types/pg": "^8.15.4",
     "drizzle-kit": "^0.31.1",
     "tsup": "^8.5.0",
     "tsx": "^4.19.4",
@@ -45,7 +45,9 @@
     "drizzle-orm": "^0.44.2",
     "fastify": "^5.3.3",
     "fastify-type-provider-zod": "^4.0.2",
+    "pg": "^8.16.0",
     "postgres": "^3.4.7",
+    "uuidv7": "^1.0.2",
     "zod": "^3.25.51"
   }
 }

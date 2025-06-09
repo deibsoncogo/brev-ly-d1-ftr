@@ -51,6 +51,7 @@ server.register(scalarUI, {
 })
 
 server.register(routes.createShortLinkRoute)
+server.register(routes.listLinkRoute)
 server.register(routes.deleteLinkRoute)
 
 server.listen({ port: 3333, host: "0.0.0.0" }).then(() => {

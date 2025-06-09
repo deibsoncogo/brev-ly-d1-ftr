@@ -1,9 +1,9 @@
 import type { FastifyPluginAsyncZod } from "fastify-type-provider-zod"
 import { z } from "zod"
-import { createShortLink } from "../../../app/function/create-short-link"
+import { createLink } from "../../../app/function/create-link"
 import { isRight, unwrapEither } from "../../shared/either"
 
-export const createShortLinkRoute: FastifyPluginAsyncZod = async server => {
+export const createLinkRoute: FastifyPluginAsyncZod = async server => {
   server.post(
     "/links",
     {
@@ -25,7 +25,7 @@ export const createShortLinkRoute: FastifyPluginAsyncZod = async server => {
     async (request, reply) => {
       const { originalLink, shortLink } = request.body
 
-      const result = await createShortLink({
+      const result = await createLink({
         originalLink,
         shortLink,
       })

@@ -50,7 +50,7 @@ server.register(scalarUI, {
   configuration: { layout: "modern" },
 })
 
-server.register(routes.createShortLinkRoute)
+server.register(routes.createLinkRoute)
 server.register(routes.listLinkRoute)
 server.register(routes.deleteLinkRoute)
 

@@ -5,21 +5,21 @@ import type { links } from "../../infra/db/schemas/links"
 import { type Either, makeLeft, makeRight } from "../../infra/shared/either"
 import { AlreadyExistsError } from "./errors"
 
-const createShortLinkInput = z.object({
+const createLinkInput = z.object({
   originalLink: z.string().url(),
   shortLink: z.string().trim().min(5).max(50),
 })
 
-type CreateShortLinkInput = z.input<typeof createShortLinkInput>
+type createLinkInput = z.input<typeof createLinkInput>
 
-type CreateShortLinkOutput = {
+type createLinkOutput = {
   link: typeof links.$inferInsert
 }
 
-export async function createShortLink(
-  input: CreateShortLinkInput
-): Promise<Either<Error, CreateShortLinkOutput>> {
-  const { originalLink, shortLink } = createShortLinkInput.parse(input)
+export async function createLink(
+  input: createLinkInput
+): Promise<Either<Error, createLinkOutput>> {
+  const { originalLink, shortLink } = createLinkInput.parse(input)
 
   const shortLinkAlreadyExists = await db.query.links.findFirst({
     where: (links, { eq }) => eq(links.shortLink, shortLink),

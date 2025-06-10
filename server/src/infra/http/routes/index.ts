@@ -1,3 +1,4 @@
 export * from "./create-link"
 export * from "./list-link"
+export * from "./find-short-link"
 export * from "./delete-link"

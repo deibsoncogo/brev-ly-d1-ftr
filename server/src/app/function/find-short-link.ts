@@ -5,21 +5,19 @@ import { schema } from "../../infra/db/schemas"
 import { type Either, makeLeft, makeRight } from "../../infra/shared/either"
 import { NotFoundLinkError } from "./errors"
 
-const findShortLinkInput = z.object({
+const zodSchema = z.object({
   shortLink: z.string().trim().min(5).max(50),
 })
 
-type findShortLinkInput = z.input<typeof findShortLinkInput>
+type Input = z.input<typeof zodSchema>
 
-type findShortLinkOutput = {
+type Output = {
   originalLink: string
   accesses: number
 }
 
-export async function findShortLink(
-  input: findShortLinkInput
-): Promise<Either<Error, findShortLinkOutput>> {
-  const { shortLink } = findShortLinkInput.parse(input)
+export async function findShortLink(input: Input): Promise<Either<Error, Output>> {
+  const { shortLink } = zodSchema.parse(input)
 
   const link = await db.query.links.findFirst({
     where: (links, { eq }) => eq(links.shortLink, shortLink),

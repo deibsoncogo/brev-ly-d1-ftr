@@ -5,20 +5,14 @@ import { schema } from "../../infra/db/schemas"
 import { type Either, makeLeft, makeRight } from "../../infra/shared/either"
 import { NotFoundLinkError } from "./errors"
 
-const deleteLinkInput = z.object({
+const zodSchema = z.object({
   id: z.string().uuid(),
 })
 
-type DeleteLinkInput = z.input<typeof deleteLinkInput>
+type Input = z.input<typeof zodSchema>
 
-type DeleteLinkOutput = {
-  status: true
-}
-
-export async function deleteLink(
-  input: DeleteLinkInput
-): Promise<Either<Error, DeleteLinkOutput>> {
-  const { id } = deleteLinkInput.parse(input)
+export async function deleteLink(input: Input): Promise<Either<Error, unknown>> {
+  const { id } = zodSchema.parse(input)
 
   const link = await db.query.links.findFirst({
     where: (links, { eq }) => eq(links.id, id),
@@ -28,5 +22,5 @@ export async function deleteLink(
 
   await db.delete(schema.links).where(eq(schema.links.id, id))
 
-  return makeRight({ status: true })
+  return makeRight({})
 }

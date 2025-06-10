@@ -1,25 +1,28 @@
 import { z } from "zod"
 import { db } from "../../infra/db"
 import { schema } from "../../infra/db/schemas"
-import type { links } from "../../infra/db/schemas/links"
 import { type Either, makeLeft, makeRight } from "../../infra/shared/either"
 import { AlreadyExistsError } from "./errors"
 
-const createLinkInput = z.object({
+const zodSchema = z.object({
   originalLink: z.string().url(),
   shortLink: z.string().trim().min(5).max(50),
 })
 
-type createLinkInput = z.input<typeof createLinkInput>
+type Input = z.input<typeof zodSchema>
 
-type createLinkOutput = {
-  link: typeof links.$inferInsert
+type Output = {
+  link: {
+    id: string
+    originalLink: string
+    shortLink: string
+    accesses: number
+    createdAt: Date
+  }
 }
 
-export async function createLink(
-  input: createLinkInput
-): Promise<Either<Error, createLinkOutput>> {
-  const { originalLink, shortLink } = createLinkInput.parse(input)
+export async function createLink(input: Input): Promise<Either<Error, Output>> {
+  const { originalLink, shortLink } = zodSchema.parse(input)
 
   const shortLinkAlreadyExists = await db.query.links.findFirst({
     where: (links, { eq }) => eq(links.shortLink, shortLink),
@@ -29,13 +32,8 @@ export async function createLink(
 
   const [result] = await db
     .insert(schema.links)
-    .values({
-      originalLink,
-      shortLink,
-    })
+    .values({ originalLink, shortLink })
     .returning()
 
-  return makeRight({
-    link: result,
-  })
+  return makeRight({ link: result })
 }

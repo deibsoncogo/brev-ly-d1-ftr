@@ -8,8 +8,8 @@ export const findShortLinkRoute: FastifyPluginAsyncZod = async server => {
     "/links/:shortLink",
     {
       schema: {
-        summary: "Find original link",
-        description: "Retrieves the original link associated with a given short link",
+        summary: "Find short link",
+        description: "Retrieve the original link and access count for a given short link",
         tags: ["Links"],
         params: z.object({
           shortLink: z.string().trim().min(5).max(50).describe("The desired short link"),
@@ -17,8 +17,8 @@ export const findShortLinkRoute: FastifyPluginAsyncZod = async server => {
         response: {
           200: z
             .object({ originalLink: z.string(), accesses: z.number() })
-            .describe("Successful retrieval of original link"),
-          404: z.object({ message: z.string() }).describe("Short link not found"),
+            .describe("Original link found"),
+          404: z.object({ message: z.string() }).describe("Not found"),
           500: z.object({ message: z.string() }).describe("Internal server error"),
         },
       },

@@ -3,7 +3,7 @@ import { db } from "../../infra/db"
 import { schema } from "../../infra/db/schemas"
 import { type Either, makeRight } from "../../infra/shared/either"
 
-type ListLinkOutput = {
+type Output = {
   links: {
     id: string
     originalLink: string
@@ -13,7 +13,7 @@ type ListLinkOutput = {
   }[]
 }
 
-export async function listLink(): Promise<Either<never, ListLinkOutput>> {
+export async function listLink(): Promise<Either<never, Output>> {
   const result = await db
     .select()
     .from(schema.links)

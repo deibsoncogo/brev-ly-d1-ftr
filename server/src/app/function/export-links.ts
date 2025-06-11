@@ -27,10 +27,10 @@ export async function exportLinks(): Promise<Either<never, Output>> {
     delimiter: ";",
     header: true,
     columns: [
-      { key: "originalLink", header: "Original Link" },
-      { key: "shortLink", header: "Short Link" },
+      { key: "original_link", header: "Original Link" },
+      { key: "short_link", header: "Short Link" },
       { key: "accesses", header: "Accesses" },
-      { key: "createdAt", header: "Created At" },
+      { key: "created_at", header: "Created At" },
     ],
   })
 
@@ -54,7 +54,7 @@ export async function exportLinks(): Promise<Either<never, Output>> {
 
   const uploadToStorage = uploadFileToStorage({
     contentType: "text/csv",
-    folder: "downloads",
+    folder: "links",
     fileName: "links",
     contentStream: uploadToStorageStream,
   })

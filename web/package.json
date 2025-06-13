@@ -1,8 +1,21 @@
 {
   "name": "brev-ly-web-d1-ftr",
-  "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "author": {
+    "name": "Deibson Cogo",
+    "email": "deibsoncogo@outlook.com",
+    "url": "https://github.com/deibsoncogo/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deibsoncogo/brev-ly-d1-ftr"
+  },
+  "keywords": ["rocketseat", "pós-graduação", "desafio 1"],
   "scripts": {
     "biome": "npx @biomejs/biome format --write ./src && npx @biomejs/biome lint --write ./src",
     "dev": "vite",

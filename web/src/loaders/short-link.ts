@@ -14,7 +14,6 @@ export async function shortLinkLoader({
   params,
 }: LoaderFunctionArgs): Promise<ShortLinkLoaderOutput> {
   const { shortLink } = params as Params
-  console.log("data =>", import.meta.env.API_URL)
 
   const { data } = await api.get(`/links/${shortLink}`)
 

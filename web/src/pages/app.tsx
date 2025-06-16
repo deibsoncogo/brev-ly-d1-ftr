@@ -22,7 +22,7 @@ export function App() {
               <input
                 type="text"
                 placeholder="brev.ly/"
-                className="h-12 mt-2 p-3 rounded-lg border border-gray-400 text-gray-400 text-sm font-semibold"
+                className="h-12 mt-2 p-3 rounded-lg border border-gray-400 placeholder-gray-400 text-gray-600 text-sm font-semibold outline-blue-base focus:text-blue-base"
               />
             </label>
           </div>
@@ -35,19 +35,25 @@ export function App() {
           </button>
         </section>
 
-        <section className="flex-1 w-full max-w-[580px] bg-gray-100 rounded-lg p-8">
-          <div>
-            <h1>Meus links</h1>
+        <section className="flex-1 w-full self-start max-w-[580px] bg-gray-100 rounded-lg p-8">
+          <div className="flex justify-between items-center">
+            <h1 className="text-gray-600 text-lg font-bold leading-6">Meus links</h1>
 
-            <button type="button">
-              <img src="/src/assets/download.svg" alt="download" className="" />
+            <button
+              type="button"
+              className="flex items-center px-3 py-2 bg-gray-200 rounded-sm text-gray-500 text-xs font-semibold cursor-pointer"
+            >
+              <img src="/src/assets/download.svg" alt="download" className="pr-2" />
               Baixar CSV
             </button>
           </div>
 
-          <div>
-            <img src="/src/assets/link.svg" alt="link" className="" />
-            <p>AINDA NÃO EXISTE LINKS CADASTRADOS</p>
+          <div className="flex flex-col justify-center items-center mt-5 border-t border-gray-200">
+            <img src="/src/assets/link.svg" alt="link" className="w-7 mt-8" />
+
+            <p className="mt-3 text-gray-500 text-[10px] leading-3.5">
+              AINDA NÃO EXISTE LINKS CADASTRADOS
+            </p>
           </div>
         </section>
       </div>

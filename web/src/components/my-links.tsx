@@ -7,7 +7,7 @@ import { NoLinkComponent } from "./no-link-component"
 export function MyLinks() {
   const [links, setLinks] = useState<Link[]>([])
 
-  async function handlerExportLinks() {
+  async function handleExportLinks() {
     await api.post("/links/csv").then(response => {
       window.open(response.data.reportUrl, "_blank")
     })
@@ -32,7 +32,7 @@ export function MyLinks() {
 
         <button
           type="button"
-          onClick={handlerExportLinks}
+          onClick={handleExportLinks}
           disabled={links?.length === 0}
           className={`flex justify-center items-center text-center px-3 py-2 outline-blue-base bg-gray-200 rounded-sm text-gray-500 text-xs font-semibold hover:bg-gray-300 ${links?.length > 0 ? "cursor-pointer opacity-100" : "cursor-default opacity-50"} `}
         >

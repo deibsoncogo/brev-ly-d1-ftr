@@ -11,11 +11,11 @@ export function LinkComponent({
 }: Props) {
   const fullShortLink = `${import.meta.env.VITE_BASE_URL_FRONTEND}/${shortLink}`
 
-  function handlerCopyShortLink(): void {
+  function handleCopyShortLink(): void {
     navigator.clipboard.writeText(fullShortLink)
   }
 
-  async function handlerDeleteLink(): Promise<void> {
+  async function handleDeleteLink(): Promise<void> {
     await deleteLink(id)
   }
 
@@ -44,7 +44,7 @@ export function LinkComponent({
         <div className="flex gap-1">
           <button
             type="button"
-            onClick={handlerCopyShortLink}
+            onClick={handleCopyShortLink}
             className="flex justify-center items-center size-8 bg-gray-200 rounded-sm cursor-pointer outline-blue-base hover:bg-gray-300"
           >
             <img src="/src/assets/copy.svg" alt="copiar" className="size-3" />
@@ -52,7 +52,7 @@ export function LinkComponent({
 
           <button
             type="button"
-            onClick={handlerDeleteLink}
+            onClick={handleDeleteLink}
             className="flex justify-center items-center size-8 bg-gray-200 rounded-sm cursor-pointer outline-blue-base hover:bg-gray-300"
           >
             <img src="/src/assets/bin.svg" alt="excluir" className="size-3" />

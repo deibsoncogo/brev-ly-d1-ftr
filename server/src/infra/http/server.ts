@@ -23,7 +23,10 @@ server.setErrorHandler((error, request, reply) => {
     .send({ message: `Internal server error, cause ${error.cause}` })
 })
 
-server.register(fastifyCors, { origin: "*" })
+server.register(fastifyCors, {
+  origin: "*",
+  methods: ["POST", "GET", "PUT", "DELETE"],
+})
 
 server.register(fastifySwagger, {
   openapi: {

@@ -1,6 +1,6 @@
 import type { Link } from "../interfaces/link"
 
-interface Props {
+type Props = {
   link: Link
   deleteLink: (id: string) => Promise<void>
 }

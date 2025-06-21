@@ -34,7 +34,7 @@ export function MyLinks() {
           type="button"
           onClick={handleExportLinks}
           disabled={links?.length === 0}
-          className={`flex justify-center items-center text-center px-3 py-2 outline-blue-base bg-gray-200 rounded-sm text-gray-500 text-xs font-semibold hover:bg-gray-300 ${links?.length > 0 ? "cursor-pointer opacity-100" : "cursor-default opacity-50"} `}
+          className={`flex justify-center items-center text-center px-3 py-2 outline-blue-base bg-gray-200 rounded-sm text-gray-500 text-xs font-semibold ${links?.length > 0 ? "cursor-pointer opacity-100 hover:bg-gray-300" : "cursor-default opacity-50"} `}
         >
           <img src="/src/assets/download.svg" alt="download" className="pr-2" />
           Baixar CSV

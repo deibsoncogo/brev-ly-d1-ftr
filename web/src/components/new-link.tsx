@@ -28,7 +28,7 @@ export function NewLink() {
     resolver: zodResolver(zodSchema),
     defaultValues: {
       originalLink: "",
-      shortLink: `${import.meta.env.VITE_BASE_URL_FRONTEND}/`,
+      shortLink: `${import.meta.env.VITE_URL_FRONTEND}/`,
     },
   })
 

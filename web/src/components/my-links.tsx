@@ -34,7 +34,7 @@ export function MyLinks() {
           type="button"
           onClick={handleExportLinks}
           disabled={links?.length === 0}
-          className={`flex justify-center items-center text-center px-3 py-2 outline-blue-base bg-gray-200 rounded-sm text-gray-500 text-xs font-semibold ${links?.length > 0 ? "cursor-pointer opacity-100 hover:bg-gray-300" : "cursor-default opacity-50"} `}
+          className="flex justify-center items-center text-center px-3 py-2 bg-gray-200 border-2 border-gray-200 rounded-sm text-gray-500 text-xs font-semibold outline-blue-base disabled:opacity-50 enabled:cursor-pointer enabled:hover:border-blue-base"
         >
           <img src="/src/assets/download.svg" alt="download" className="pr-2" />
           Baixar CSV

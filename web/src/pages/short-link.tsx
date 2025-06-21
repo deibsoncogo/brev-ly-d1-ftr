@@ -8,7 +8,7 @@ export function ShortLink() {
     window.location.href = originalLink
   }
 
-  setTimeout(redirectToOriginalLink, 3000)
+  setTimeout(redirectToOriginalLink, 1000)
 
   return (
     <main className="flex justify-center items-center h-screen">

@@ -1,3 +1,4 @@
+import toast from "react-hot-toast"
 import type { Link } from "../interfaces/link"
 
 type Props = {
@@ -13,10 +14,17 @@ export function LinkComponent({
 
   function handleCopyShortLink(): void {
     navigator.clipboard.writeText(href)
+    toast.success("Copiado com sucesso!")
   }
 
   async function handleDeleteLink(): Promise<void> {
     await deleteLink(id)
+      .then(() => {
+        toast.success("Excluído com sucesso!")
+      })
+      .catch(() => {
+        toast.error("Falha ao excluir o link!")
+      })
   }
 
   return (

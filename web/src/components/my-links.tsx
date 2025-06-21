@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import toast from "react-hot-toast"
 import type { Link } from "../interfaces/link"
 import { api } from "../service/api"
 import { LinkComponent } from "./link-component"
@@ -8,9 +9,15 @@ export function MyLinks() {
   const [links, setLinks] = useState<Link[]>([])
 
   async function handleExportLinks() {
-    await api.post("/links/csv").then(response => {
-      window.open(response.data.reportUrl, "_blank")
-    })
+    await api
+      .post("/links/csv")
+      .then(response => {
+        window.open(response.data.reportUrl, "_blank")
+        toast.success("Exportação executado com sucesso!")
+      })
+      .catch(() => {
+        toast.error("Falha ao exportar os dados!")
+      })
   }
 
   async function deleteLink(id: string): Promise<void> {
@@ -20,9 +27,14 @@ export function MyLinks() {
   }
 
   useEffect(() => {
-    api.get("/links").then(({ data }) => {
-      setLinks(data.links)
-    })
+    api
+      .get("/links")
+      .then(({ data }) => {
+        setLinks(data.links)
+      })
+      .catch(() => {
+        toast.error("Falha ao listar os links!")
+      })
   }, [])
 
   return (

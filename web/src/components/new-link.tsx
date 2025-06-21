@@ -1,13 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useState } from "react"
 import { type FieldValues, useForm } from "react-hook-form"
+import toast from "react-hot-toast"
 import { z } from "zod"
 import { api } from "../service/api"
 import { Input } from "./ui/input-ui"
 
 export function NewLink() {
-  const [isErrorField, setIsErrorFieldApi] = useState<FieldValues>({})
-
   const zodSchema = z.object({
     originalLink: z
       .string({ message: "Deve ser um texto" })
@@ -36,16 +34,9 @@ export function NewLink() {
     !watch("originalLink") || !watch("shortLink") || Object.values(errors).length > 0
 
   async function handleNewLink(data: FieldValues): Promise<void> {
-    setIsErrorFieldApi({})
-
-    await api
-      .post("/links", data)
-      .then(response => {
-        console.log("response =>", response)
-      })
-      .catch(({ response }) => {
-        if (response.data.error.data) setIsErrorFieldApi(response.data.error.data)
-      })
+    await api.post("/links", data).catch(() => {
+      toast.error("Falha ao criar um link!")
+    })
   }
 
   return (
@@ -56,7 +47,7 @@ export function NewLink() {
         <Input
           labelName="LINK ORIGINAL"
           placeholder="www.exemplo.com.br"
-          isError={!!errors.originalLink || isErrorField.name === watch("originalLink")}
+          isError={!!errors.originalLink}
           messageError={errors.originalLink?.message}
           {...register("originalLink")}
         />
@@ -64,7 +55,7 @@ export function NewLink() {
         <Input
           labelName="LINK ENCURTADO"
           placeholder="brev.ly/"
-          isError={!!errors.shortLink || isErrorField.name === watch("shortLink")}
+          isError={!!errors.shortLink}
           messageError={errors.shortLink?.message}
           {...register("shortLink")}
         />

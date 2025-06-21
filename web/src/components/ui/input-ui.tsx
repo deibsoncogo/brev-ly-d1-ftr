@@ -17,14 +17,12 @@ export function Input({ labelName, isError, messageError, ...rest }: Props) {
         {...rest}
       />
 
-      <div className="flex justify-start items-center h-4 pt-2">
-        {isError && (
-          <strong className="flex items-center gap-2 text-xs leading-4 font-semibold text-gray-500">
-            <img src="/src/assets/error.svg" alt="error" className="h-3.5" />
-            {messageError}
-          </strong>
-        )}
-      </div>
+      {isError && (
+        <strong className="flex items-center pt-2 gap-2 text-xs leading-4 font-semibold text-gray-500">
+          <img src="/src/assets/error.svg" alt="error" className="h-3.5" />
+          {messageError}
+        </strong>
+      )}
     </label>
   )
 }

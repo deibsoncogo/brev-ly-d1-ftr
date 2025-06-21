@@ -52,7 +52,7 @@ export function NewLink() {
     <section className="flex flex-col flex-1 w-full max-w-[380px] gap-6 bg-gray-100 rounded-lg p-8">
       <h1 className="text-gray-600 text-lg font-bold leading-6">Novo link</h1>
 
-      <form onSubmit={handleSubmit(handleNewLink)} className="flex flex-col gap-3">
+      <form onSubmit={handleSubmit(handleNewLink)} className="flex flex-col gap-4">
         <Input
           labelName="LINK ORIGINAL"
           placeholder="www.exemplo.com.br"

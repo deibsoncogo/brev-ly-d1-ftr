@@ -1,22 +1,22 @@
 import { createBrowserRouter } from "react-router-dom"
-import { shortLinkLoader } from "./loaders/short-link"
-import { App } from "./pages/app"
-import { NotFound } from "./pages/not-found"
-import { ShortLink } from "./pages/short-link"
+import { shortLinkLoader } from "./loaders/short-link-loader"
+import { AppPage } from "./pages/app-page"
+import { NotFoundPage } from "./pages/not-found-page"
+import { ShortLinkPage } from "./pages/short-link-page"
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <AppPage />,
   },
   {
     path: "/:shortLink",
-    element: <ShortLink />,
+    element: <ShortLinkPage />,
     loader: shortLinkLoader,
-    errorElement: <NotFound />,
+    errorElement: <NotFoundPage />,
   },
   {
     path: "*",
-    element: <NotFound />,
+    element: <NotFoundPage />,
   },
 ])

@@ -1,4 +1,4 @@
-export interface Link {
+export interface LikInterface {
   id: string
   originalLink: string
   shortLink: string

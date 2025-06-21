@@ -6,7 +6,7 @@ type Props = InputHTMLAttributes<HTMLInputElement> & {
   messageError: string | undefined
 }
 
-export function Input({ labelName, isError, messageError, ...rest }: Props) {
+export function InputUi({ labelName, isError, messageError, ...rest }: Props) {
   return (
     <label className="flex flex-col text-gray-500 text-[10px] leading-3.5 ">
       {labelName}

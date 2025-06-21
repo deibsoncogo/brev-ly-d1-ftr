@@ -1,12 +1,12 @@
 import toast from "react-hot-toast"
-import type { Link } from "../interfaces/link"
+import type { LikInterface } from "../interfaces/link-interface"
 
 type Props = {
-  link: Link
+  link: LikInterface
   deleteLink: (id: string) => Promise<void>
 }
 
-export function LinkComponent({
+export function LinkComponentComponent({
   link: { id, originalLink, shortLink, accesses },
   deleteLink,
 }: Props) {

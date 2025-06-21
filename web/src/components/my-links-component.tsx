@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
-import type { Link } from "../interfaces/link"
-import { api } from "../service/api"
-import { LinkComponent } from "./link-component"
+import type { LikInterface } from "../interfaces/link-interface"
+import { api } from "../services/api"
+import { LinkComponentComponent } from "./link-component"
 import { NoLinkComponent } from "./no-link-component"
 
-export function MyLinks() {
-  const [links, setLinks] = useState<Link[]>([])
+export function MyLinksComponent() {
+  const [links, setLinks] = useState<LikInterface[]>([])
 
   async function handleExportLinks() {
     await api
@@ -57,7 +57,7 @@ export function MyLinks() {
         <NoLinkComponent />
       ) : (
         links.map(link => (
-          <LinkComponent key={link.id} link={link} deleteLink={deleteLink} />
+          <LinkComponentComponent key={link.id} link={link} deleteLink={deleteLink} />
         ))
       )}
     </section>

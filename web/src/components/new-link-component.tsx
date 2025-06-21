@@ -2,10 +2,10 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { type FieldValues, useForm } from "react-hook-form"
 import toast from "react-hot-toast"
 import { z } from "zod"
-import { api } from "../service/api"
-import { Input } from "./ui/input-ui"
+import { api } from "../services/api"
+import { InputUi } from "./ui/input-ui"
 
-export function NewLink() {
+export function NewLinkComponent() {
   const zodSchema = z.object({
     originalLink: z
       .string({ message: "Deve ser um texto" })
@@ -44,7 +44,7 @@ export function NewLink() {
       <h1 className="text-gray-600 text-lg font-bold leading-6">Novo link</h1>
 
       <form onSubmit={handleSubmit(handleNewLink)} className="flex flex-col gap-4">
-        <Input
+        <InputUi
           labelName="LINK ORIGINAL"
           placeholder="www.exemplo.com.br"
           isError={!!errors.originalLink}
@@ -52,7 +52,7 @@ export function NewLink() {
           {...register("originalLink")}
         />
 
-        <Input
+        <InputUi
           labelName="LINK ENCURTADO"
           placeholder="brev.ly/"
           isError={!!errors.shortLink}

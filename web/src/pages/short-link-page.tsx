@@ -1,7 +1,7 @@
 import { Link, useLoaderData } from "react-router-dom"
-import type { ShortLinkLoaderOutput } from "../loaders/short-link"
+import type { ShortLinkLoaderOutput } from "../loaders/short-link-loader"
 
-export function ShortLink() {
+export function ShortLinkPage() {
   const { originalLink } = useLoaderData() as ShortLinkLoaderOutput
 
   function redirectToOriginalLink() {

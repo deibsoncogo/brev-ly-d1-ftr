@@ -1,5 +1,5 @@
 import type { LoaderFunctionArgs } from "react-router-dom"
-import { api } from "../service/api"
+import { api } from "../services/api"
 
 type Params = {
   shortLink: string

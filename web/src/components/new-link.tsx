@@ -9,8 +9,14 @@ export function NewLink() {
   const [isErrorField, setIsErrorFieldApi] = useState<FieldValues>({})
 
   const zodSchema = z.object({
-    originalLink: z.string().url().describe("The original URL to shorten"),
-    shortLink: z.string().trim().min(5).max(50).describe("The desired short link"),
+    originalLink: z
+      .string({ message: "Deve ser um texto" })
+      .url({ message: "A URL deve ser válida" }),
+    shortLink: z
+      .string({ message: "Deve ser um texto" })
+      .trim()
+      .min(5, { message: "Deve conter pelo menos 5 caracteres" })
+      .max(30, { message: "Pode conter no máximo 30 caracteres" }),
   })
 
   const {

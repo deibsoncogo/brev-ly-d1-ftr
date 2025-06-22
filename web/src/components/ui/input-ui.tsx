@@ -8,21 +8,26 @@ type Props = InputHTMLAttributes<HTMLInputElement> & {
 
 export function InputUi({ labelName, isError, messageError, ...rest }: Props) {
   return (
-    <label className="flex flex-col text-gray-500 text-[10px] leading-3.5 ">
-      {labelName}
+    <fieldset className="group flex flex-col gap-2">
+      <label
+        htmlFor={rest.id}
+        className={`group-focus-within:text-blue-base text-[10px] leading-3.5 ${isError ? "font-semibold text-danger" : "font-normal text-gray-500"}`}
+      >
+        {labelName}
+      </label>
 
       <input
         type="text"
-        className={`h-12 mt-2 p-3 rounded-lg border-2 placeholder-gray-400 text-gray-600 text-sm font-semibold outline-blue-base focus:text-blue-base ${isError ? "border-danger" : "border-gray-400"}`}
+        className={`group-focus-within:text-blue-base h-12 p-3 rounded-lg border-2 placeholder-gray-400 text-sm font-semibold outline-blue-base ${isError ? "text-danger border-danger" : "text-gray-600 border-gray-400"}`}
         {...rest}
       />
 
       {isError && (
-        <strong className="flex items-center pt-2 gap-2 text-xs leading-4 font-semibold text-gray-500">
+        <strong className="flex items-center gap-2 text-xs text-danger font-semibold leading-4">
           <img src="/src/assets/error.svg" alt="error" className="h-3.5" />
           {messageError}
         </strong>
       )}
-    </label>
+    </fieldset>
   )
 }

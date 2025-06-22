@@ -3,9 +3,12 @@ import toast from "react-hot-toast"
 import type { LikInterface } from "../interfaces/link-interface"
 import { api } from "../services/api"
 import { LinkComponentComponent } from "./link-component"
+import { LoadingLinksComponent } from "./loading-links-component"
 import { NoLinkComponent } from "./no-link-component"
+import { TopLoadingBarComponent } from "./top-loading-bar-component"
 
 export function MyLinksComponent() {
+  const [isLoading, setIsLoading] = useState(true)
   const [links, setLinks] = useState<LikInterface[]>([])
 
   async function handleExportLinks() {
@@ -31,6 +34,7 @@ export function MyLinksComponent() {
       .get("/links")
       .then(({ data }) => {
         setLinks(data.links)
+        setIsLoading(false)
       })
       .catch(() => {
         toast.error("Falha ao listar os links!")
@@ -38,7 +42,9 @@ export function MyLinksComponent() {
   }, [])
 
   return (
-    <section className="flex-1 w-full self-start max-w-[580px] bg-gray-100 rounded-lg p-8">
+    <section className="flex-1 w-full self-start max-w-[580px] bg-gray-100 rounded-lg p-8 relative overflow-hidden">
+      {isLoading && <TopLoadingBarComponent />}
+
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-gray-600 text-lg font-bold leading-6">Meus links</h1>
 
@@ -53,7 +59,9 @@ export function MyLinksComponent() {
         </button>
       </div>
 
-      {links?.length === 0 ? (
+      {isLoading ? (
+        <LoadingLinksComponent />
+      ) : links?.length === 0 ? (
         <NoLinkComponent />
       ) : (
         links.map(link => (

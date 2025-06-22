@@ -35,16 +35,18 @@ export function LinkComponent({
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-base text-sm leading-4 font-semibold outline-none hover:underline focus:underline"
+          className="text-blue-base line-clamp-1 text-sm leading-4 font-semibold break-all outline-none hover:underline focus:underline"
         >
           {host}/{shortLink}
         </a>
 
-        <p className="text-xs leading-3.5 text-gray-500">{originalLink}</p>
+        <p className="line-clamp-2 text-xs leading-3.5 break-all text-gray-500">
+          {originalLink}
+        </p>
       </div>
 
       <div className="flex items-center gap-5">
-        <p className="text-xs leading-3.5 text-gray-500 whitespace-nowrap">
+        <p className="text-xs leading-3.5 whitespace-nowrap text-gray-500">
           {accesses} acesso{accesses > 1 && "s"}
         </p>
 

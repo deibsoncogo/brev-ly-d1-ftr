@@ -45,7 +45,7 @@ export function MyLinksComponent() {
   }, [])
 
   return (
-    <section className="relative w-full max-w-[580px] flex-1 self-start overflow-hidden rounded-lg bg-gray-100 p-8">
+    <section className="relative w-full flex-1 self-start overflow-hidden rounded-lg bg-gray-100 p-8 md:max-w-[580px]">
       {isLoading && <TopLoadingBarComponent />}
 
       <div className="mb-4 flex items-center justify-between">

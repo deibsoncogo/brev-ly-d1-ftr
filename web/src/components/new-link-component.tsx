@@ -43,7 +43,7 @@ export function NewLinkComponent() {
   }
 
   return (
-    <section className="flex w-full max-w-[380px] flex-1 flex-col gap-6 self-start rounded-lg bg-gray-100 p-8">
+    <section className="flex w-full flex-1 flex-col gap-6 self-start rounded-lg bg-gray-100 p-8 md:max-w-[380px]">
       <h1 className="text-lg leading-6 font-bold text-gray-600">Novo link</h1>
 
       <form onSubmit={handleSubmit(handleNewLink)} className="flex flex-col gap-4">

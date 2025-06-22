@@ -2,10 +2,11 @@ import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
 import type { LikInterface } from "../interfaces/link-interface"
 import { api } from "../services/api"
-import { LinkComponentComponent } from "./link-component"
+import { LinkComponent } from "./link-component"
 import { LoadingLinksComponent } from "./loading-links-component"
 import { NoLinkComponent } from "./no-link-component"
 import { TopLoadingBarComponent } from "./top-loading-bar-component"
+import { ButtonUi } from "./ui/button-ui"
 
 export function MyLinksComponent() {
   const [isLoading, setIsLoading] = useState(true)
@@ -34,10 +35,12 @@ export function MyLinksComponent() {
       .get("/links")
       .then(({ data }) => {
         setLinks(data.links)
-        setIsLoading(false)
       })
       .catch(() => {
         toast.error("Falha ao listar os links!")
+      })
+      .finally(() => {
+        setIsLoading(false)
       })
   }, [])
 
@@ -48,15 +51,15 @@ export function MyLinksComponent() {
       <div className="mb-4 flex items-center justify-between">
         <h1 className="text-lg leading-6 font-bold text-gray-600">Meus links</h1>
 
-        <button
+        <ButtonUi
           type="button"
+          size="rectangular"
           onClick={handleExportLinks}
           disabled={links?.length === 0}
-          className="outline-blue-base enabled:hover:border-blue-base flex items-center justify-center rounded-sm border-2 border-gray-200 bg-gray-200 px-3 py-2 text-center text-xs font-semibold text-gray-500 enabled:cursor-pointer disabled:opacity-50"
         >
-          <img src="/src/assets/download.svg" alt="download" className="pr-2" />
+          <img src="/src/assets/download.svg" alt="download" className="size-3" />
           Baixar CSV
-        </button>
+        </ButtonUi>
       </div>
 
       {isLoading ? (
@@ -65,7 +68,7 @@ export function MyLinksComponent() {
         <NoLinkComponent />
       ) : (
         links.map(link => (
-          <LinkComponentComponent key={link.id} link={link} deleteLink={deleteLink} />
+          <LinkComponent key={link.id} link={link} deleteLink={deleteLink} />
         ))
       )}
     </section>

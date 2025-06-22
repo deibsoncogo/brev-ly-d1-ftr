@@ -1,12 +1,13 @@
 import toast from "react-hot-toast"
 import type { LikInterface } from "../interfaces/link-interface"
+import { ButtonUi } from "./ui/button-ui"
 
 type Props = {
   link: LikInterface
   deleteLink: (id: string) => Promise<void>
 }
 
-export function LinkComponentComponent({
+export function LinkComponent({
   link: { id, originalLink, shortLink, accesses },
   deleteLink,
 }: Props) {
@@ -43,26 +44,18 @@ export function LinkComponentComponent({
       </div>
 
       <div className="flex items-center gap-5">
-        <p className="text-xs leading-3.5 text-gray-500">
+        <p className="text-xs leading-3.5 text-gray-500 whitespace-nowrap">
           {accesses} acesso{accesses > 1 && "s"}
         </p>
 
         <div className="flex gap-1">
-          <button
-            type="button"
-            onClick={handleCopyShortLink}
-            className="outline-blue-base hover:border-blue-base flex size-8 cursor-pointer items-center justify-center rounded-sm border-2 border-gray-200 bg-gray-200"
-          >
+          <ButtonUi type="button" size="square" onClick={handleCopyShortLink}>
             <img src="/src/assets/copy.svg" alt="copiar" className="size-3" />
-          </button>
+          </ButtonUi>
 
-          <button
-            type="button"
-            onClick={handleDeleteLink}
-            className="outline-blue-base hover:border-blue-base flex size-8 cursor-pointer items-center justify-center rounded-sm border-2 border-gray-200 bg-gray-200"
-          >
+          <ButtonUi type="button" size="square" onClick={handleDeleteLink}>
             <img src="/src/assets/bin.svg" alt="excluir" className="size-3" />
-          </button>
+          </ButtonUi>
         </div>
       </div>
     </div>

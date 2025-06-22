@@ -23,7 +23,8 @@ export function NewLinkComponent() {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    reset,
+    formState: { errors, isSubmitting, isLoading },
   } = useForm({
     resolver: zodResolver(zodSchema),
     defaultValues: { originalLink: "", shortLink: "" },
@@ -33,13 +34,18 @@ export function NewLinkComponent() {
     !watch("originalLink") || !watch("shortLink") || Object.values(errors).length > 0
 
   async function handleNewLink(data: FieldValues): Promise<void> {
-    await api.post("/links", data).catch(() => {
-      toast.error("Falha ao criar um link!")
-    })
+    await api
+      .post("/links", data)
+      .then(() => {
+        reset()
+      })
+      .catch(() => {
+        toast.error("Falha ao criar um link!")
+      })
   }
 
   return (
-    <section className="flex w-full max-w-[380px] flex-1 flex-col gap-6 rounded-lg bg-gray-100 p-8">
+    <section className="flex w-full max-w-[380px] flex-1 flex-col gap-6 self-start rounded-lg bg-gray-100 p-8">
       <h1 className="text-lg leading-6 font-bold text-gray-600">Novo link</h1>
 
       <form onSubmit={handleSubmit(handleNewLink)} className="flex flex-col gap-4">
@@ -61,8 +67,8 @@ export function NewLinkComponent() {
 
         <button
           type="submit"
-          disabled={isHandleEditUserData}
-          className="bg-blue-base mt-2 cursor-pointer rounded-lg p-4 text-sm leading-4 font-semibold text-white disabled:cursor-default disabled:opacity-50"
+          disabled={isHandleEditUserData || isSubmitting || isLoading}
+          className={`bg-blue-base mt-2 cursor-pointer rounded-lg p-4 text-sm leading-4 font-semibold text-white disabled:opacity-50 ${isSubmitting || isLoading ? "cursor-progress" : "disabled:cursor-default"}`}
         >
           Salvar link
         </button>

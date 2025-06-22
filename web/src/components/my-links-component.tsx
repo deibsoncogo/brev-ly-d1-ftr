@@ -42,17 +42,17 @@ export function MyLinksComponent() {
   }, [])
 
   return (
-    <section className="flex-1 w-full self-start max-w-[580px] bg-gray-100 rounded-lg p-8 relative overflow-hidden">
+    <section className="relative w-full max-w-[580px] flex-1 self-start overflow-hidden rounded-lg bg-gray-100 p-8">
       {isLoading && <TopLoadingBarComponent />}
 
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-gray-600 text-lg font-bold leading-6">Meus links</h1>
+      <div className="mb-4 flex items-center justify-between">
+        <h1 className="text-lg leading-6 font-bold text-gray-600">Meus links</h1>
 
         <button
           type="button"
           onClick={handleExportLinks}
           disabled={links?.length === 0}
-          className="flex justify-center items-center text-center px-3 py-2 bg-gray-200 border-2 border-gray-200 rounded-sm text-gray-500 text-xs font-semibold outline-blue-base disabled:opacity-50 enabled:cursor-pointer enabled:hover:border-blue-base"
+          className="outline-blue-base enabled:hover:border-blue-base flex items-center justify-center rounded-sm border-2 border-gray-200 bg-gray-200 px-3 py-2 text-center text-xs font-semibold text-gray-500 enabled:cursor-pointer disabled:opacity-50"
         >
           <img src="/src/assets/download.svg" alt="download" className="pr-2" />
           Baixar CSV

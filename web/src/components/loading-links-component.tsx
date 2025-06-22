@@ -2,12 +2,12 @@ import { motion } from "motion/react"
 
 export function LoadingLinksComponent() {
   return (
-    <div className="flex flex-col justify-center items-center border-t border-gray-200">
-      <div className="flex mt-8 space-x-2">
+    <div className="flex flex-col items-center justify-center border-t border-gray-200">
+      <div className="mt-8 flex space-x-2">
         {[0, 1, 2, 3].map(i => (
           <motion.div
             key={i}
-            className="w-2 h-2 bg-gray-400 rounded-full"
+            className="h-2 w-2 rounded-full bg-gray-400"
             animate={{
               y: [0, -6, 0],
             }}
@@ -21,7 +21,7 @@ export function LoadingLinksComponent() {
         ))}
       </div>
 
-      <p className="mt-3 text-gray-500 text-[10px] leading-3.5 uppercase">
+      <p className="mt-3 text-[10px] leading-3.5 text-gray-500 uppercase">
         CARREGANDO LINKS
       </p>
     </div>

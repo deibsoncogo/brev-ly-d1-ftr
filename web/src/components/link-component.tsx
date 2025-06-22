@@ -28,18 +28,18 @@ export function LinkComponentComponent({
   }
 
   return (
-    <div className="flex justify-between items-center py-4 last:pb-0 gap-3 border-t border-gray-200">
+    <div className="flex items-center justify-between gap-3 border-t border-gray-200 py-4 last:pb-0">
       <div className="flex flex-col justify-center gap-1">
         <a
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm leading-4 font-semibold text-blue-base hover:underline outline-none focus:underline"
+          className="text-blue-base text-sm leading-4 font-semibold outline-none hover:underline focus:underline"
         >
           {host}/{shortLink}
         </a>
 
-        <p className="text-xs leading-3.5 text-gray-500 ">{originalLink}</p>
+        <p className="text-xs leading-3.5 text-gray-500">{originalLink}</p>
       </div>
 
       <div className="flex items-center gap-5">
@@ -51,7 +51,7 @@ export function LinkComponentComponent({
           <button
             type="button"
             onClick={handleCopyShortLink}
-            className="flex justify-center items-center size-8 bg-gray-200 border-2 border-gray-200 rounded-sm cursor-pointer outline-blue-base hover:border-blue-base"
+            className="outline-blue-base hover:border-blue-base flex size-8 cursor-pointer items-center justify-center rounded-sm border-2 border-gray-200 bg-gray-200"
           >
             <img src="/src/assets/copy.svg" alt="copiar" className="size-3" />
           </button>
@@ -59,7 +59,7 @@ export function LinkComponentComponent({
           <button
             type="button"
             onClick={handleDeleteLink}
-            className="flex justify-center items-center size-8 bg-gray-200 border-2 border-gray-200 rounded-sm cursor-pointer outline-blue-base hover:border-blue-base"
+            className="outline-blue-base hover:border-blue-base flex size-8 cursor-pointer items-center justify-center rounded-sm border-2 border-gray-200 bg-gray-200"
           >
             <img src="/src/assets/bin.svg" alt="excluir" className="size-3" />
           </button>

@@ -4,7 +4,7 @@ export function TopLoadingBarComponent() {
   return (
     <div className="absolute top-0 left-0 h-0.5 w-full overflow-hidden rounded-full">
       <motion.div
-        className="absolute top-0 left-0 h-full bg-blue-base"
+        className="bg-blue-base absolute top-0 left-0 h-full"
         animate={{
           x: ["-100%", "100%"],
         }}

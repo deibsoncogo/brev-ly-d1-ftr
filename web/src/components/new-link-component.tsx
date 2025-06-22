@@ -22,6 +22,7 @@ export function NewLinkComponent() {
     handleSubmit,
     watch,
     reset,
+
     formState: { errors, isSubmitting, isLoading },
   } = useForm({
     resolver: zodResolver(zodSchema),
@@ -36,6 +37,7 @@ export function NewLinkComponent() {
       .post("/links", data)
       .then(() => {
         reset()
+        toast.success("Link criado com sucesso!")
       })
       .catch(() => {
         toast.error("Falha ao criar um link!")
@@ -66,9 +68,9 @@ export function NewLinkComponent() {
         <button
           type="submit"
           disabled={isHandleEditUserData || isSubmitting || isLoading}
-          className={`bg-blue-base hover:bg-blue-dark mt-2 cursor-pointer rounded-lg p-4 text-sm leading-4 font-semibold text-white outline-none focus:underline disabled:opacity-50 ${isSubmitting || isLoading ? "cursor-progress" : "disabled:cursor-default"}`}
+          className="bg-blue-base enabled:hover:bg-blue-dark mt-2 rounded-lg p-4 text-sm leading-4 font-semibold text-white outline-none focus:underline enabled:cursor-pointer disabled:opacity-50"
         >
-          Salvar link
+          {isSubmitting ? "Salvando..." : "Salvar link"}
         </button>
       </form>
     </section>

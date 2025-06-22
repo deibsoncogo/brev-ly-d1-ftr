@@ -62,15 +62,17 @@ export function MyLinksComponent() {
         </ButtonUi>
       </div>
 
-      {isLoading ? (
-        <LoadingLinksComponent />
-      ) : links?.length === 0 ? (
-        <NoLinkComponent />
-      ) : (
-        links.map(link => (
-          <LinkComponent key={link.id} link={link} deleteLink={deleteLink} />
-        ))
-      )}
+      <div className="max-h-[65lvh] overflow-y-auto">
+        {isLoading ? (
+          <LoadingLinksComponent />
+        ) : links?.length === 0 ? (
+          <NoLinkComponent />
+        ) : (
+          links.map(link => (
+            <LinkComponent key={link.id} link={link} deleteLink={deleteLink} />
+          ))
+        )}
+      </div>
     </section>
   )
 }

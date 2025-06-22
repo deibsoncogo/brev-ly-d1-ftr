@@ -19,13 +19,16 @@ export function LinkComponent({
   }
 
   async function handleDeleteLink(): Promise<void> {
-    await deleteLink(id)
-      .then(() => {
-        toast.success("Excluído com sucesso!")
-      })
-      .catch(() => {
-        toast.error("Falha ao excluir o link!")
-      })
+    const result = confirm("Você tem certeza que desejar excluir o link?")
+
+    if (result)
+      await deleteLink(id)
+        .then(() => {
+          toast.success("Excluído com sucesso!")
+        })
+        .catch(() => {
+          toast.error("Falha ao excluir o link!")
+        })
   }
 
   return (

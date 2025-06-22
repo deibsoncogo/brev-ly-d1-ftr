@@ -10,7 +10,7 @@ export function LinkComponentComponent({
   link: { id, originalLink, shortLink, accesses },
   deleteLink,
 }: Props) {
-  const { href, host } = new URL(`${import.meta.env.VITE_URL_FRONTEND}/${shortLink}`)
+  const { href, host } = new URL(`${import.meta.env.VITE_FRONTEND_URL}/${shortLink}`)
 
   function handleCopyShortLink(): void {
     navigator.clipboard.writeText(href)

@@ -6,6 +6,8 @@ import { api } from "../services/api"
 import { InputUi } from "./ui/input-ui"
 
 export function NewLinkComponent() {
+  const { host } = new URL(import.meta.env.VITE_FRONTEND_URL)
+
   const zodSchema = z.object({
     originalLink: z
       .string({ message: "Deve ser um texto" })
@@ -24,10 +26,7 @@ export function NewLinkComponent() {
     formState: { errors },
   } = useForm({
     resolver: zodResolver(zodSchema),
-    defaultValues: {
-      originalLink: "",
-      shortLink: `${import.meta.env.VITE_URL_FRONTEND}/`,
-    },
+    defaultValues: { originalLink: "", shortLink: "" },
   })
 
   const isHandleEditUserData =
@@ -54,7 +53,7 @@ export function NewLinkComponent() {
 
         <InputUi
           labelName="LINK ENCURTADO"
-          placeholder="brev.ly/"
+          placeholder={`${host}/`}
           isError={!!errors.shortLink}
           messageError={errors.shortLink?.message}
           {...register("shortLink")}
@@ -63,7 +62,7 @@ export function NewLinkComponent() {
         <button
           type="submit"
           disabled={isHandleEditUserData}
-          className="mt-2 p-5 bg-blue-base text-white text-sm leading-4 font-semibold rounded-lg cursor-pointer disabled:opacity-50 disabled:cursor-default"
+          className="mt-2 p-4 bg-blue-base text-white text-sm leading-4 font-semibold rounded-lg cursor-pointer disabled:opacity-50 disabled:cursor-default"
         >
           Salvar link
         </button>

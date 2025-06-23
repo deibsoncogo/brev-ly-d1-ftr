@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
-import type { LikInterface } from "../interfaces/link-interface"
 import { api } from "../services/api"
+import { useLinkStore } from "../stores/link-store"
 import { LinkComponent } from "./link-component"
 import { LoadingLinksComponent } from "./loading-links-component"
 import { NoLinkComponent } from "./no-link-component"
@@ -10,7 +10,7 @@ import { ButtonUi } from "./ui/button-ui"
 
 export function MyLinksComponent() {
   const [isLoading, setIsLoading] = useState(true)
-  const [links, setLinks] = useState<LikInterface[]>([])
+  const { links, setLinks, removeLink } = useLinkStore()
 
   async function handleExportLinks() {
     await api
@@ -26,7 +26,7 @@ export function MyLinksComponent() {
 
   async function deleteLink(id: string): Promise<void> {
     await api.delete(`/links/${id}`).then(() => {
-      setLinks(prevLinks => prevLinks.filter(link => link.id !== id))
+      removeLink(id)
     })
   }
 
@@ -42,7 +42,7 @@ export function MyLinksComponent() {
       .finally(() => {
         setIsLoading(false)
       })
-  }, [])
+  }, [setLinks])
 
   return (
     <section className="relative w-full flex-1 self-start overflow-hidden rounded-lg bg-gray-100 p-8 md:max-w-[580px]">

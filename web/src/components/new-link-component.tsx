@@ -3,9 +3,12 @@ import { type FieldValues, useForm } from "react-hook-form"
 import toast from "react-hot-toast"
 import { z } from "zod"
 import { api } from "../services/api"
+import { useLinkStore } from "../stores/link-store"
 import { InputUi } from "./ui/input-ui"
 
 export function NewLinkComponent() {
+  const { addLink } = useLinkStore()
+
   const zodSchema = z.object({
     originalLink: z
       .string({ message: "Deve ser um texto" })
@@ -35,8 +38,9 @@ export function NewLinkComponent() {
   async function handleNewLink(data: FieldValues): Promise<void> {
     await api
       .post("/links", data)
-      .then(() => {
+      .then(response => {
         reset()
+        addLink(response.data.link)
         toast.success("Link criado com sucesso!")
       })
       .catch(() => {

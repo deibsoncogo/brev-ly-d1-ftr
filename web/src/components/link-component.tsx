@@ -1,9 +1,9 @@
 import toast from "react-hot-toast"
-import type { LikInterface } from "../interfaces/link-interface"
+import type { LinkInterface } from "../interfaces/link-interface"
 import { ButtonUi } from "./ui/button-ui"
 
 type Props = {
-  link: LikInterface
+  link: LinkInterface
   deleteLink: (id: string) => Promise<void>
 }
 
@@ -15,7 +15,7 @@ export function LinkComponent({
 
   function handleCopyShortLink(): void {
     navigator.clipboard.writeText(href)
-    toast.success("Copiado com sucesso!")
+    toast.success("Link copiado com sucesso!")
   }
 
   async function handleDeleteLink(): Promise<void> {
@@ -24,7 +24,7 @@ export function LinkComponent({
     if (result)
       await deleteLink(id)
         .then(() => {
-          toast.success("Excluído com sucesso!")
+          toast.success("Link excluído com sucesso!")
         })
         .catch(() => {
           toast.error("Falha ao excluir o link!")

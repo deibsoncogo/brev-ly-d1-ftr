@@ -16,7 +16,17 @@ export const createLinkRoute: FastifyPluginAsyncZod = async server => {
           shortLink: z.string().trim().min(5).max(50).describe("The desired short link"),
         }),
         response: {
-          201: z.null().describe("Created"),
+          200: z
+            .object({
+              link: z.object({
+                id: z.string(),
+                originalLink: z.string(),
+                shortLink: z.string(),
+                accesses: z.number(),
+                createdAt: z.date(),
+              }),
+            })
+            .describe("Created"),
           409: z.object({ message: z.string() }).describe("Value already exists"),
           500: z.object({ message: z.string() }).describe("Internal server error"),
         },
@@ -30,7 +40,10 @@ export const createLinkRoute: FastifyPluginAsyncZod = async server => {
         shortLink,
       })
 
-      if (isRight(result)) return reply.status(201).send()
+      if (isRight(result)) {
+        const { link } = unwrapEither(result)
+        return reply.status(201).send({ link })
+      }
 
       const error = unwrapEither(result)
 

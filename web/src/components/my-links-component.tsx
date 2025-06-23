@@ -10,7 +10,7 @@ import { ButtonUi } from "./ui/button-ui"
 
 export function MyLinksComponent() {
   const [isLoading, setIsLoading] = useState(true)
-  const { links, setLinks, removeLink } = useLinkStore()
+  const { links, setLinks } = useLinkStore()
 
   async function handleExportLinks() {
     await api
@@ -22,12 +22,6 @@ export function MyLinksComponent() {
       .catch(() => {
         toast.error("Falha ao exportar os dados!")
       })
-  }
-
-  async function deleteLink(id: string): Promise<void> {
-    await api.delete(`/links/${id}`).then(() => {
-      removeLink(id)
-    })
   }
 
   useEffect(() => {
@@ -45,11 +39,11 @@ export function MyLinksComponent() {
   }, [setLinks])
 
   return (
-    <section className="relative w-full flex-1 self-start overflow-hidden rounded-lg bg-gray-100 p-8 md:max-w-[580px]">
+    <section className="relative flex-1 self-start w-full p-8 bg-gray-100 rounded-lg overflow-hidden md:max-w-[580px]">
       {isLoading && <TopLoadingBarComponent />}
 
-      <div className="mb-4 flex items-center justify-between">
-        <h1 className="text-lg leading-6 font-bold text-gray-600">Meus links</h1>
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-gray-600 font-bold text-lg leading-6">Meus links</h1>
 
         <ButtonUi
           type="button"
@@ -68,9 +62,7 @@ export function MyLinksComponent() {
         ) : links?.length === 0 ? (
           <NoLinkComponent />
         ) : (
-          links.map(link => (
-            <LinkComponent key={link.id} link={link} deleteLink={deleteLink} />
-          ))
+          links.map(link => <LinkComponent key={link.id} link={link} />)
         )}
       </div>
     </section>

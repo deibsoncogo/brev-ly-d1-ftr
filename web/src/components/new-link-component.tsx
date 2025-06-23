@@ -49,8 +49,8 @@ export function NewLinkComponent() {
   }
 
   return (
-    <section className="flex w-full flex-1 flex-col gap-6 self-start rounded-lg bg-gray-100 p-8 md:max-w-[380px]">
-      <h1 className="text-lg leading-6 font-bold text-gray-600">Novo link</h1>
+    <section className="flex flex-1 flex-col self-start w-full p-8 gap-6 bg-gray-100 rounded-lg md:max-w-[380px]">
+      <h1 className="text-gray-600 font-bold text-lg leading-6">Novo link</h1>
 
       <form onSubmit={handleSubmit(handleNewLink)} className="flex flex-col gap-4">
         <InputUi
@@ -72,7 +72,7 @@ export function NewLinkComponent() {
         <button
           type="submit"
           disabled={isHandleEditUserData || isSubmitting || isLoading}
-          className="bg-blue-base enabled:hover:bg-blue-dark mt-2 rounded-lg p-4 text-sm leading-4 font-semibold text-white outline-none focus:underline enabled:cursor-pointer disabled:opacity-50"
+          className="mt-2 p-4 bg-blue-base rounded-lg text-white font-semibold text-sm leading-4 outline-none focus:underline disabled:opacity-50 enabled:cursor-pointer enabled:hover:bg-blue-dark"
         >
           {isSubmitting ? "Salvando..." : "Salvar link"}
         </button>

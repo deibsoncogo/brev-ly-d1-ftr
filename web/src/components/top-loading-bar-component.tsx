@@ -2,9 +2,9 @@ import { motion } from "framer-motion"
 
 export function TopLoadingBarComponent() {
   return (
-    <div className="absolute top-0 left-0 h-0.5 w-full overflow-hidden rounded-full">
+    <div className="absolute top-0 left-0 h-0.5 w-full rounded-full overflow-hidden">
       <motion.div
-        className="bg-blue-base absolute top-0 left-0 h-full"
+        className="absolute top-0 left-0 h-full bg-blue-base"
         animate={{
           x: ["-100%", "100%"],
         }}

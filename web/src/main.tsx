@@ -9,7 +9,7 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Toaster
       position="bottom-right"
-      containerClassName="text-sm leading-4 font-semibold text-gray-600"
+      containerClassName="text-gray-600 font-semibold text-sm leading-4"
       toastOptions={{
         duration: 2000,
         error: { duration: 7000 },

@@ -1,16 +1,16 @@
 import toast from "react-hot-toast"
-import type { LinkInterface } from "../interfaces/link-interface"
+import { api } from "../services/api"
+import { type Link, useLinkStore } from "../stores/link-store"
 import { ButtonUi } from "./ui/button-ui"
 
 type Props = {
-  link: LinkInterface
-  deleteLink: (id: string) => Promise<void>
+  link: Link
 }
 
 export function LinkComponent({
   link: { id, originalLink, shortLink, accesses },
-  deleteLink,
 }: Props) {
+  const { removeLink } = useLinkStore()
   const { href, host } = new URL(`${import.meta.env.VITE_FRONTEND_URL}/${shortLink}`)
 
   function handleCopyShortLink(): void {
@@ -22,8 +22,10 @@ export function LinkComponent({
     const result = confirm("Você tem certeza que desejar excluir o link?")
 
     if (result)
-      await deleteLink(id)
+      await api
+        .delete(`/links/${id}`)
         .then(() => {
+          removeLink(id)
           toast.success("Link excluído com sucesso!")
         })
         .catch(() => {
@@ -32,24 +34,24 @@ export function LinkComponent({
   }
 
   return (
-    <div className="flex items-center justify-between gap-3 border-t border-gray-200 py-4 last:pb-0">
+    <div className="flex justify-between items-center py-4 gap-3 border-t border-gray-200 last:pb-0">
       <div className="flex flex-col justify-center gap-1">
         <a
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-base line-clamp-1 text-sm leading-4 font-semibold break-all outline-none hover:underline focus:underline"
+          className="text-blue-base font-semibold text-sm leading-4 break-all  line-clamp-1 outline-none hover:underline focus:underline"
         >
           {host}/{shortLink}
         </a>
 
-        <p className="line-clamp-2 text-xs leading-3.5 break-all text-gray-500">
+        <p className="text-gray-500 text-xs leading-3.5 break-all line-clamp-2">
           {originalLink}
         </p>
       </div>
 
       <div className="flex items-center gap-5">
-        <p className="text-xs leading-3.5 whitespace-nowrap text-gray-500">
+        <p className="text-gray-500 text-xs leading-3.5 whitespace-nowrap">
           {accesses} acesso{accesses > 1 && "s"}
         </p>
 

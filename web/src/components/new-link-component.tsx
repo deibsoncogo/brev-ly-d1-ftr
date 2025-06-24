@@ -4,6 +4,7 @@ import toast from "react-hot-toast"
 import { z } from "zod"
 import { api } from "../services/api"
 import { useLinkStore } from "../stores/link-store"
+import { TopLoadingBarComponent } from "./top-loading-bar-component"
 import { InputUi } from "./ui/input-ui"
 
 export function NewLinkComponent() {
@@ -49,7 +50,9 @@ export function NewLinkComponent() {
   }
 
   return (
-    <section className="flex flex-1 flex-col self-start w-full p-8 gap-6 bg-gray-100 rounded-lg md:max-w-[380px]">
+    <section className="relative flex flex-1 flex-col self-start w-full p-8 gap-6 bg-gray-100 rounded-lg overflow-hidden md:max-w-[380px]">
+      {(isSubmitting || isLoading) && <TopLoadingBarComponent />}
+
       <h1 className="text-gray-600 font-bold text-lg leading-6">Novo link</h1>
 
       <form onSubmit={handleSubmit(handleNewLink)} className="flex flex-col gap-4">

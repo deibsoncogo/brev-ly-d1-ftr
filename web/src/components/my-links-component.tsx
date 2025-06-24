@@ -56,7 +56,7 @@ export function MyLinksComponent() {
         </ButtonUi>
       </div>
 
-      <div className="max-h-[65lvh] overflow-y-auto">
+      <div className="max-h-[35lvh] md:max-h-[65lvh] overflow-y-auto">
         {isLoading ? (
           <LoadingLinksComponent />
         ) : links?.length === 0 ? (

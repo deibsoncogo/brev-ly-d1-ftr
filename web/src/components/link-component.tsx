@@ -10,8 +10,13 @@ type Props = {
 export function LinkComponent({
   link: { id, originalLink, shortLink, accesses },
 }: Props) {
-  const { removeLink } = useLinkStore()
+  const { removeLink, incrementAccesses } = useLinkStore()
   const { href, host } = new URL(`${import.meta.env.VITE_FRONTEND_URL}/${shortLink}`)
+
+  function handleOpenLink(): void {
+    window.open(href, "_blank")
+    setTimeout(() => incrementAccesses(id), 1000)
+  }
 
   function handleCopyShortLink(): void {
     navigator.clipboard.writeText(href)
@@ -35,15 +40,14 @@ export function LinkComponent({
 
   return (
     <div className="flex justify-between items-center py-4 gap-3 border-t border-gray-200 last:pb-0">
-      <div className="flex flex-col justify-center gap-1">
-        <a
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-base font-semibold text-sm leading-4 break-all  line-clamp-1 outline-none hover:underline focus:underline"
+      <div className="flex flex-col items-start gap-1">
+        <button
+          type="button"
+          onClick={handleOpenLink}
+          className="text-blue-base font-semibold text-sm leading-4 break-all line-clamp-1 outline-none cursor-pointer hover:underline focus:underline"
         >
           {host}/{shortLink}
-        </a>
+        </button>
 
         <p className="text-gray-500 text-xs leading-3.5 break-all line-clamp-2">
           {originalLink}

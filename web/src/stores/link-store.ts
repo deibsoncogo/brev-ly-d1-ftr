@@ -13,6 +13,7 @@ type LinkStore = {
   setLinks: (links: Link[]) => void
   addLink: (link: Link) => void
   removeLink: (id: string) => void
+  incrementAccesses: (id: string) => void
 }
 
 export const useLinkStore = create<LinkStore>(set => ({
@@ -28,5 +29,13 @@ export const useLinkStore = create<LinkStore>(set => ({
 
   removeLink: id => {
     set(state => ({ links: state.links.filter(link => link.id !== id) }))
+  },
+
+  incrementAccesses: id => {
+    set(state => ({
+      links: state.links.map(link =>
+        link.id === id ? { ...link, accesses: link.accesses + 1 } : link
+      ),
+    }))
   },
 }))

@@ -27,7 +27,15 @@ export const createLinkRoute: FastifyPluginAsyncZod = async server => {
               }),
             })
             .describe("Created"),
-          409: z.object({ message: z.string() }).describe("Value already exists"),
+          409: z
+            .object({
+              statusCode: z.number(),
+              name: z.string(),
+              message: z.string(),
+              field: z.string(),
+              value: z.string(),
+            })
+            .describe("Value already exists"),
           500: z.object({ message: z.string() }).describe("Internal server error"),
         },
       },
@@ -45,11 +53,11 @@ export const createLinkRoute: FastifyPluginAsyncZod = async server => {
         return reply.status(201).send({ link })
       }
 
-      const error = unwrapEither(result)
+      const { statusCode, name, message, field, value } = unwrapEither(result)
 
-      switch (error.constructor.name) {
+      switch (name) {
         case "AlreadyExistsError":
-          return reply.status(409).send({ message: error.message })
+          return reply.status(409).send({ statusCode, name, message, field, value })
       }
     }
   )

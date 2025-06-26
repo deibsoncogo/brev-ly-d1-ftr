@@ -16,7 +16,15 @@ export const deleteLinkRoute: FastifyPluginAsyncZod = async server => {
         }),
         response: {
           204: z.null().describe("Deleted"),
-          404: z.object({ message: z.string() }).describe("Not found"),
+          404: z
+            .object({
+              statusCode: z.number(),
+              name: z.string(),
+              message: z.string(),
+              field: z.string(),
+              value: z.string(),
+            })
+            .describe("Not found"),
           500: z.object({ message: z.string() }).describe("Internal server error"),
         },
       },
@@ -30,11 +38,11 @@ export const deleteLinkRoute: FastifyPluginAsyncZod = async server => {
 
       if (isRight(result)) return reply.status(204).send()
 
-      const error = unwrapEither(result)
+      const { statusCode, name, message, field, value } = unwrapEither(result)
 
-      switch (error.constructor.name) {
+      switch (name) {
         case "NotFoundLinkError":
-          return reply.status(404).send({ message: error.message })
+          return reply.status(404).send({ statusCode, name, message, field, value })
       }
     }
   )

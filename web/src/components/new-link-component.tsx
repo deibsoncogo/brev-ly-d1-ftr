@@ -26,7 +26,7 @@ export function NewLinkComponent() {
     handleSubmit,
     watch,
     reset,
-
+    setError,
     formState: { errors, isSubmitting, isLoading },
   } = useForm({
     resolver: zodResolver(zodSchema),
@@ -44,9 +44,16 @@ export function NewLinkComponent() {
         addLink(response.data.link)
         toast.success("Link criado com sucesso!")
       })
-      .catch(() => {
-        toast.error("Falha ao criar um link!")
-      })
+      .catch(
+        ({
+          response: {
+            data: { field, message },
+          },
+        }) => {
+          if (field && message) setError(field, { message })
+          toast.error("Falha ao criar o link!")
+        }
+      )
   }
 
   return (

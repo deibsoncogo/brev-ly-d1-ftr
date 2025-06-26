@@ -16,14 +16,16 @@ type Output = {
   accesses: number
 }
 
-export async function findShortLink(input: Input): Promise<Either<Error, Output>> {
+export async function findShortLink(
+  input: Input
+): Promise<Either<NotFoundLinkError, Output>> {
   const { shortLink } = zodSchema.parse(input)
 
   const link = await db.query.links.findFirst({
     where: (links, { eq }) => eq(links.shortLink, shortLink),
   })
 
-  if (!link) return makeLeft(new NotFoundLinkError())
+  if (!link) return makeLeft(new NotFoundLinkError("shortLink", shortLink))
 
   const [newLink] = await db
     .update(schema.links)

@@ -11,14 +11,16 @@ const zodSchema = z.object({
 
 type Input = z.input<typeof zodSchema>
 
-export async function deleteLink(input: Input): Promise<Either<Error, unknown>> {
+export async function deleteLink(
+  input: Input
+): Promise<Either<NotFoundLinkError, unknown>> {
   const { id } = zodSchema.parse(input)
 
   const link = await db.query.links.findFirst({
     where: (links, { eq }) => eq(links.id, id),
   })
 
-  if (!link) return makeLeft(new NotFoundLinkError())
+  if (!link) return makeLeft(new NotFoundLinkError("id", id))
 
   await db.delete(schema.links).where(eq(schema.links.id, id))
 

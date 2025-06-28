@@ -3,6 +3,7 @@ import { fastifySwagger } from "@fastify/swagger"
 import scalarUI from "@scalar/fastify-api-reference"
 import { fastify } from "fastify"
 import * as fastifyTypeProviderZod from "fastify-type-provider-zod"
+import { env } from "../../env"
 import * as routes from "./routes"
 
 const server = fastify()
@@ -59,6 +60,6 @@ server.register(routes.findShortLinkRoute)
 server.register(routes.deleteLinkRoute)
 server.register(routes.exportLinkRoute)
 
-server.listen({ port: 3333, host: "0.0.0.0" }).then(() => {
-  console.log("HTTP server running!")
+server.listen({ port: env.PORT, host: "0.0.0.0" }).then(() => {
+  console.log(`HTTP server running on port ${env.PORT}!`)
 })

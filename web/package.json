@@ -2,7 +2,7 @@
   "name": "brev-ly-web-d1-ftr",
   "version": "1.0.0",
   "type": "module",
-  "description": "",
+  "description": "Aplicação SPA em React para criação, listagem e gerenciamento de links encurtados, com exportação de dados e animações. Desenvolvido com Vite, Tailwind CSS, Zustand e Framer Motion",
   "main": "",
   "license": "MIT",
   "private": true,

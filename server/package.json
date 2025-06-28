@@ -2,7 +2,7 @@
   "name": "brev-ly-server-d1-ftr",
   "version": "1.0.0",
   "type": "module",
-  "description": "",
+  "description": "API RESTful para encurtamento de URLs com validação, redirecionamento, contagem de acessos e exportação de relatórios em CSV. Desenvolvido com Fastify, Drizzle ORM e PostgreSQL",
   "main": "",
   "license": "MIT",
   "private": true,

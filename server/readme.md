@@ -34,6 +34,11 @@ O objetivo foi criar uma aplicação **Full Stack** de encurtamento de URLs, com
 docker compose up -d
 ```
 
+3. Agora temos que criar nossas tabelas do banco de dados;
+```bash
+npm run db:migrate
+```
+
 3. Depois basta executar o seguinte comando para iniciar o servidor.
 ```bash
 npm run dev

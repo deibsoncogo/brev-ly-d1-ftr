@@ -46,12 +46,12 @@ export function LinkComponent({
         <button
           type="button"
           onClick={handleOpenLink}
-          className="text-blue-base font-semibold text-sm leading-4 break-all line-clamp-1 outline-none cursor-pointer hover:underline focus:underline"
+          className="text-start text-blue-base font-semibold text-sm leading-4 break-all line-clamp-1 outline-none cursor-pointer hover:underline focus:underline"
         >
           {host}/{shortLink}
         </button>
 
-        <p className="text-gray-500 text-xs leading-3.5 break-all line-clamp-2">
+        <p className="text-start text-gray-500 text-xs leading-3.5 break-all line-clamp-1">
           {originalLink}
         </p>
       </div>

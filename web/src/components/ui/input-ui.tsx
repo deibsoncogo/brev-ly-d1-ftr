@@ -1,4 +1,5 @@
 import type { InputHTMLAttributes } from "react"
+import error from "../../assets/error.svg"
 
 type Props = InputHTMLAttributes<HTMLInputElement> & {
   labelName: string
@@ -24,7 +25,7 @@ export function InputUi({ labelName, isError, messageError, ...rest }: Props) {
 
       {isError && (
         <strong className="flex items-center gap-2 text-danger font-semibold text-xs leading-4">
-          <img src="/src/assets/error.svg" alt="error" className="h-3.5" />
+          <img src={error} alt="error" className="h-3.5" />
           {messageError}
         </strong>
       )}

@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom"
+import error404 from "../assets/404.svg"
 
 export function NotFoundPage() {
   return (
     <main className="flex h-screen items-center justify-center">
       <div className="flex flex-col justify-center items-center max-w-[580px] m-5 px-5 py-16 gap-6 rounded-lg bg-gray-100">
-        <img src="/src/assets/404.svg" alt="404" className="w-44" />
+        <img src={error404} alt="404" className="w-44" />
 
         <h2 className="text-gray-600 font-bold text-2xl leading-8">
           Link não encontrado

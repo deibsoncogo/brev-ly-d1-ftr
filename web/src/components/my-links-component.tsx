@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
+import download from "../assets/download.svg"
+import spinner from "../assets/spinner.svg"
 import { api } from "../services/api"
 import { useLinkStore } from "../stores/link-store"
 import { LinkComponent } from "./link-component"
@@ -56,9 +58,9 @@ export function MyLinksComponent() {
           disabled={links?.length === 0 || isLoading.listSort || isLoading.exportLinks}
         >
           {isLoading.exportLinks ? (
-            <img src="/src/assets/spinner.svg" alt="download" className="size-3" />
+            <img src={spinner} alt="O" className="size-3" />
           ) : (
-            <img src="/src/assets/download.svg" alt="download" className="size-3" />
+            <img src={download} alt="download" className="size-3" />
           )}
           Baixar CSV
         </ButtonUi>

@@ -1,4 +1,5 @@
 import { Link, useLoaderData } from "react-router-dom"
+import icon from "../assets/icon.svg"
 import type { ShortLinkLoaderOutput } from "../loaders/short-link-loader"
 
 export function ShortLinkPage() {
@@ -13,7 +14,7 @@ export function ShortLinkPage() {
   return (
     <main className="flex justify-center items-center h-screen">
       <div className="flex flex-col justify-center items-center max-w-[580px] m-5 px-5 py-16 gap-6 bg-gray-100 rounded-lg">
-        <img src="/src/assets/icon.svg" alt="404" className="w-11" />
+        <img src={icon} alt="icon" className="w-11" />
 
         <h2 className="text-gray-600 font-bold text-2xl leading-8">Redirecionando...</h2>
 

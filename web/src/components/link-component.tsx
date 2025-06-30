@@ -1,4 +1,6 @@
 import toast from "react-hot-toast"
+import bin from "../assets/bin.svg"
+import copy from "../assets/copy.svg"
 import { api } from "../services/api"
 import { type Link, useLinkStore } from "../stores/link-store"
 import { ButtonUi } from "./ui/button-ui"
@@ -61,11 +63,11 @@ export function LinkComponent({
 
         <div className="flex gap-1">
           <ButtonUi type="button" size="square" onClick={handleCopyShortLink}>
-            <img src="/src/assets/copy.svg" alt="copiar" className="size-3" />
+            <img src={copy} alt="copiar" className="size-3" />
           </ButtonUi>
 
           <ButtonUi type="button" size="square" onClick={handleDeleteLink}>
-            <img src="/src/assets/bin.svg" alt="excluir" className="size-3" />
+            <img src={bin} alt="excluir" className="size-3" />
           </ButtonUi>
         </div>
       </div>

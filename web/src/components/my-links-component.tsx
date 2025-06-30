@@ -17,15 +17,22 @@ export function MyLinksComponent() {
   async function handleExportLinks() {
     setIsLoading(prev => ({ ...prev, exportLinks: true }))
 
-    await api
-      .post("/links/csv")
-      .then(response => {
-        window.open(response.data.reportUrl, "_self")
-        toast.success("Exportação executado com sucesso!")
-      })
-      .catch(() => {
-        toast.error("Falha ao exportar os dados!")
-      })
+    if (import.meta.env.VITE_FAKE_EXPORT_SVG === "false") {
+      await api
+        .post("/links/csv")
+        .then(response => {
+          window.open(response.data.reportUrl, "_self")
+          toast.success("Exportação executado com sucesso!")
+        })
+        .catch(() => {
+          toast.error("Falha ao exportar os dados!")
+        })
+    } else {
+      toast.success(
+        "Não será gerado um arquivo CSV, para poupar recursos do Cloudflare, obrigado",
+        { duration: 10000 }
+      )
+    }
 
     setIsLoading(prev => ({ ...prev, exportLinks: false }))
   }

@@ -1,11 +1,8 @@
-# Brev.ly | Encurtador de URLs
-
+# 🧩 Brev.ly - Encurtador de URLs
 Projeto desenvolvido como parte do **Desafio 1 do Módulo Fundamentos Técnicos e Estratégicos (120h)** da pós-graduação em Desenvolvimento Full Stack pela [Faculdade de Tecnologia Rocketseat](https://rocketseat.com.br).
-
 O objetivo foi criar uma aplicação **Full Stack** de encurtamento de URLs, com funcionalidades robustas no backend e uma interface moderna no frontend.
 
 ## ✨ Funcionalidades
-
 - Criação de links encurtados únicos;
 - Redirecionamento a partir do link curto;
 - Listagem de links já criados com contagem de acesso;
@@ -14,9 +11,7 @@ O objetivo foi criar uma aplicação **Full Stack** de encurtamento de URLs, com
 - Tratativa de links acesso a links inválidos.
 
 ## 🧱 Tecnologias Utilizadas
-
 ### 🛠 Back-end
-
 - **Node.js + TypeScript** — Plataforma escalável para construção de aplicações com código moderno e seguro;
 - **Fastify** — Framework web rápido e leve, ideal para APIs performáticas;
 - **Zod** — Biblioteca de validação de dados com tipagem forte, integrada ao TypeScript;
@@ -26,7 +21,6 @@ O objetivo foi criar uma aplicação **Full Stack** de encurtamento de URLs, com
 - **Swagger (Fastify Swagger)** — Geração automática de documentação interativa da API, permitindo testes diretos e melhor integração com consumidores.
 
 ### 💻 Front-end
-
 - **React + TypeScript** — Biblioteca declarativa para criação de interfaces reativas, com segurança de tipos e desenvolvimento moderno;
 - **Vite** — Ferramenta de build ultrarrápida e otimizada para projetos com React;
 - **Tailwind CSS** — Framework de utilitários CSS que permite estilização rápida e responsiva diretamente no JSX;

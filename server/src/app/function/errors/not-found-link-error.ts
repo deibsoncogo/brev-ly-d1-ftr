@@ -6,7 +6,7 @@ export class NotFoundLinkError extends Error {
   constructor(field: string, value: string) {
     super(`O valor ${value} não foi encontrado no sistema`)
 
-    this.name = "NotFoundError"
+    this.name = "NotFoundLinkError"
 
     this.statusCode = 404
     this.field = field

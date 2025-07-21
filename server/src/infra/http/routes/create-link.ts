@@ -58,6 +58,8 @@ export const createLinkRoute: FastifyPluginAsyncZod = async server => {
       switch (name) {
         case "AlreadyExistsError":
           return reply.status(409).send({ statusCode, name, message, field, value })
+        default:
+          throw new Error()
       }
     }
   )

@@ -1,7 +1,7 @@
 import type { FastifyPluginAsyncZod } from "fastify-type-provider-zod"
 import { z } from "zod"
-import { unwrapEither } from "../../shared/either"
 import { exportLinks } from "../../../app/function/export-links"
+import { isRight, unwrapEither } from "../../shared/either"
 
 export const exportLinkRoute: FastifyPluginAsyncZod = async server => {
   server.post(
@@ -20,9 +20,12 @@ export const exportLinkRoute: FastifyPluginAsyncZod = async server => {
     async (request, reply) => {
       const result = await exportLinks()
 
-      const { reportUrl } = unwrapEither(result)
+      if (isRight(result)) {
+        const { reportUrl } = unwrapEither(result)
+        return reply.status(201).send({ reportUrl })
+      }
 
-      return reply.status(201).send({ reportUrl })
+      throw new Error()
     }
   )
 }

@@ -43,6 +43,8 @@ export const deleteLinkRoute: FastifyPluginAsyncZod = async server => {
       switch (name) {
         case "NotFoundLinkError":
           return reply.status(404).send({ statusCode, name, message, field, value })
+        default:
+          throw new Error()
       }
     }
   )

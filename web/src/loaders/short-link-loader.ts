@@ -17,5 +17,7 @@ export async function shortLinkLoader({
 
   const { data } = await api.get(`/links/${shortLink}`)
 
+  if (!data) throw new Error("Short link not found")
+
   return data
 }

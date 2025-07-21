@@ -72,7 +72,7 @@ export function NewLinkComponent() {
         />
 
         <InputUi
-          labelName="LINK ENCURTADO"
+          labelName="PALAVRA CHAVE"
           placeholder="exemplo"
           isError={!!errors.shortLink}
           messageError={errors.shortLink?.message}
